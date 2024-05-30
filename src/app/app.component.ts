@@ -40,6 +40,23 @@ export class AppComponent implements OnInit {
       icon: 'information-circle'
     }
   ];
+  wpPages = [
+    {
+      title: 'Posts',
+      url: '/posts',
+      icon: 'calendar'
+    },
+    {
+      title: 'Pages',
+      url: '/wppages',
+      icon: 'document'
+    },
+    {
+      title: 'login',
+      url: '/login',
+      icon: 'log-in'
+    }
+  ];
   loggedIn = false;
   dark = false;
 

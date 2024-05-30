@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { checkTutorialGuard } from './providers/check-tutorial.guard';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/support/support.module').then(m => m.SupportModule)
   },
   {
-    path: 'login',
+    path: 'login-old',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
@@ -32,11 +32,35 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
     canMatch: [checkTutorialGuard]
-  }
+  },
+  {
+    path: 'posts',
+    loadChildren: () => import('./posts/posts.module').then(m => m.PostsPageModule)
+  },
+  {
+    path: 'wppages',
+    loadChildren: () => import('./wpPages/wppages.module').then(m => m.WpPageModule)
+  },
+  // {
+  //   path: 'login',
+  //   loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  // },
+  // {
+  //   path: 'register',
+  //   loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+  // },
+  {
+    path: 'post/:id',
+    loadChildren: () => import('./post/post.module').then(m => m.PostPageModule)
+  },
+  {
+    path: 'page/:id',
+    loadChildren: () => import('./wppage/wppage.module').then(m => m.wppagePageModule)
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
